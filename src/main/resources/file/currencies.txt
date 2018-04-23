@@ -1,0 +1,4 @@
+/Currencies
+UK, 25%, 600, GBP
+DE, 20%, 800, EUR
+PL, 19%, 1200, PLN
