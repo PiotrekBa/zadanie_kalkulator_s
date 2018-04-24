@@ -1,6 +1,5 @@
 package pl.piotrbartoszak.repository;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import pl.piotrbartoszak.model.Country;
 import pl.piotrbartoszak.service.CheckCurrencyService;
