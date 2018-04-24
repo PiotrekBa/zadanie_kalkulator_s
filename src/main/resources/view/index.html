@@ -7,10 +7,14 @@
 <body>
     <form method = "POST">
         Podaj dzienny zarobek<br>
-        <input type="number">
+        <input id="value" type="number">
+        <span style="color:red" id="error"></span>
         <br>
-        <input type="submit" value="Przelicz">
+        <button>Przelicz</button>
     </form>
+    <br>
+    <div class="countries">
+    </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <script src="javascript/app.js"></script>
