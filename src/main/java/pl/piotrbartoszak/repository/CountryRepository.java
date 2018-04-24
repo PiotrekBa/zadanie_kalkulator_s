@@ -1,44 +1,38 @@
 package pl.piotrbartoszak.repository;
 
 import org.springframework.stereotype.Repository;
-import pl.piotrbartoszak.model.Currency;
+import pl.piotrbartoszak.model.Country;
 import pl.piotrbartoszak.service.ReadFileService;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class CurrencyRepository {
-    private List<Currency> currencies;
+public class CountryRepository {
+    private List<Country> countries;
 
-    public CurrencyRepository() {
-        this.currencies = new ArrayList<>();
+    public CountryRepository() {
+        this.countries = new ArrayList<>();
         List<String> currenciesList = ReadFileService.readFile();
 
         for(String s : currenciesList) {
-            Currency c = convertStringToCurrency(s);
+            Country c = convertStringToCountry(s);
             if(c != null) {
-                currencies.add(c);
+
+                countries.add(c);
             }
         }
     }
 
-    public List<Currency> getCurrencies() {
-        return currencies;
+    public List<Country> getCountries() {
+        return countries;
     }
 
-    public void setCurrencies(List<Currency> currencies) {
-        this.currencies = currencies;
+    public void setCountries(List<Country> countries) {
+        this.countries = countries;
     }
 
-    private Currency convertStringToCurrency(String s) {
+    private Country convertStringToCountry(String s) {
         String[] parts = s.split(",");
         if(parts.length != 4) {
             return null;
@@ -57,8 +51,8 @@ public class CurrencyRepository {
             return null;
         }
 
-        Currency currency = new Currency(countrySymbol, taxPercent, fixedCosts, currencySymbol);
+        Country country = new Country(countrySymbol, taxPercent, fixedCosts, currencySymbol);
 
-        return currency;
+        return country;
     }
 }

@@ -1,12 +1,12 @@
 package pl.piotrbartoszak.model;
 
-public class Currency {
+public class Country {
     private String countrySymbol;
     private int taxPercent;
     private int fixedCosts;
     private String currencySymbol;
 
-    public Currency(String countrySymbol, int taxPercent, int fixedCosts, String currencySymbol) {
+    public Country(String countrySymbol, int taxPercent, int fixedCosts, String currencySymbol) {
         this.countrySymbol = countrySymbol;
         this.taxPercent = taxPercent;
         this.fixedCosts = fixedCosts;

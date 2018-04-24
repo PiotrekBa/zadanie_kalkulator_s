@@ -9,14 +9,13 @@ import java.util.List;
 
 public class ReadFileService {
 
-    private static final String FILENAME = "src/main/resources/file/currencies.txt";
+    private static final String FILENAME = "src/main/resources/file/countries.txt";
 
     public static List<String> readFile() {
         List<String> fileLines = new ArrayList<>();
 
         BufferedReader br = null;
         FileReader fr = null;
-        File f = new File(FILENAME);
 
         try {
 
