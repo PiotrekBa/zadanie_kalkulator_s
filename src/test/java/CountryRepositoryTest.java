@@ -14,11 +14,10 @@ public class CountryRepositoryTest {
                 new Country("UK", 25, 600, "GBP");
 
         CountryRepository countryRepository = new CountryRepository();
+        countryRepository.getCountriesFromFile();
+        List<Country> countries = countryRepository.getCountries();
 
-        List<Country> currencies = countryRepository.getCountries();
-
-        Country countryToCheck = currencies.get(0);
-
+        Country countryToCheck = countries.get(0);
         assertEquals(expectedCarrency.getCountrySymbol(), countryToCheck.getCountrySymbol());
         assertEquals(expectedCarrency.getTaxPercent(), countryToCheck.getTaxPercent());
         assertEquals(expectedCarrency.getFixedCosts(), countryToCheck.getFixedCosts());

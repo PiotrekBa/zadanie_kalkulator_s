@@ -19,8 +19,9 @@ public class CalculatorController {
     CountryRepository countryRepository;
 
     @GetMapping("")
-    public List<Country> getValue() {
+    public List<Country> getCountries() {
+        countryRepository.getCountriesFromFile();
         return countryRepository.getCountries();
     }
-    
+
 }

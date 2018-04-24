@@ -15,7 +15,7 @@ public class CountryRepository {
 
     private List<Country> countries;
 
-    public CountryRepository() {
+    public void getCountriesFromFile() {
         this.countries = new ArrayList<>();
         List<String> currenciesList = ReadFileService.readFile();
 
@@ -39,7 +39,7 @@ public class CountryRepository {
         this.countries = countries;
     }
 
-    private Country convertStringToCountry(String s) {
+    private static Country convertStringToCountry(String s) {
         String[] parts = s.split(",");
         if (parts.length != 4) {
             return null;
