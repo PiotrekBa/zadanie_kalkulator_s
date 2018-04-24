@@ -18,13 +18,9 @@ public class CalculatorController {
     @Autowired
     CountryRepository countryRepository;
 
-    @GetMapping("/get-currency")
+    @GetMapping("")
     public List<Country> getValue() {
-
         return countryRepository.getCountries();
     }
-
-
-
-
+    
 }

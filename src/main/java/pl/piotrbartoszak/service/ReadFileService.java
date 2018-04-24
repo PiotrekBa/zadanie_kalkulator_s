@@ -1,5 +1,7 @@
 package pl.piotrbartoszak.service;
 
+import org.springframework.stereotype.Service;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -7,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class ReadFileService {
 
     private static final String FILENAME = "src/main/resources/file/countries.txt";
@@ -25,7 +28,7 @@ public class ReadFileService {
             String currentLine;
 
             while ((currentLine = br.readLine()) != null) {
-                if(!currentLine.startsWith("/")) {
+                if (!currentLine.startsWith("/")) {
                     fileLines.add(currentLine);
                 }
             }

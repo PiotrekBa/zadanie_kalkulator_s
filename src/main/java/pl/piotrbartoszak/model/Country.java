@@ -1,10 +1,13 @@
 package pl.piotrbartoszak.model;
 
+import java.math.BigDecimal;
+
 public class Country {
     private String countrySymbol;
     private int taxPercent;
     private int fixedCosts;
     private String currencySymbol;
+    private BigDecimal exchangeRate = null;
 
     public Country(String countrySymbol, int taxPercent, int fixedCosts, String currencySymbol) {
         this.countrySymbol = countrySymbol;
@@ -43,5 +46,13 @@ public class Country {
 
     public void setCurrencySymbol(String currencySymbol) {
         this.currencySymbol = currencySymbol;
+    }
+
+    public BigDecimal getExchangeRate() {
+        return exchangeRate;
+    }
+
+    public void setExchangeRate(BigDecimal exchangeRate) {
+        this.exchangeRate = exchangeRate;
     }
 }
