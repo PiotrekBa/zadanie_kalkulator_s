@@ -1,7 +1,7 @@
 /Configuration file for currencies
 /
 /Data format:
-/Country Symbol, Vat, Fixed Costs, Currency Symbol
+/Country Symbol, Tax, Fixed Costs, Currency Symbol
 
 UK, 25%, 600, GBP
 DE, 20%, 800, EUR
