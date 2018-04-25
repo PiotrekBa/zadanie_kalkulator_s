@@ -3,15 +3,19 @@ package pl.piotrbartoszak.controller;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.piotrbartoszak.model.Country;
 import pl.piotrbartoszak.model.Earning;
 import pl.piotrbartoszak.repository.CountryRepository;
+import pl.piotrbartoszak.repository.EarningRepository;
 import pl.piotrbartoszak.service.CalculateEarningService;
 
+import javax.servlet.http.HttpServletResponse;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @EnableAutoConfiguration
@@ -24,6 +28,9 @@ public class CalculatorController {
     @Autowired
     CalculateEarningService cea;
 
+    @Autowired
+    EarningRepository earningRepository;
+
     @GetMapping("")
     public List<Country> getCountries() {
         countryRepository.getCountriesFromFile();
@@ -31,17 +38,13 @@ public class CalculatorController {
     }
 
     @PostMapping("/calculate")
-    public List<Earning> calculateEarnings(@RequestBody String dailyRate) {
-        List<Earning> earnings = new ArrayList<>();
+    public void calculateEarnings(@RequestBody String dailyRate) {
+        earningRepository.setEarningsList(dailyRate, countryRepository.getCountries());
+    }
 
-        List<Country> countries = countryRepository.getCountries();
-
-        for(Country c : countries) {
-            Earning earning = cea.calculateEarning(dailyRate, c);
-            earnings.add(earning);
-        }
-
-        return earnings;
+    @GetMapping("/send")
+    public List<Earning> sendEarnings() {
+        return earningRepository.getEarnings();
     }
 
 }

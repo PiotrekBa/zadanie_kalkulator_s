@@ -8,7 +8,6 @@ $(document).ready(function () {
         $.ajax({
             url: API_URL
         }).done(function (countries) {
-            console.log(countries);
             showCountries(countries);
         })
     }
@@ -18,7 +17,7 @@ $(document).ready(function () {
 
         var value = $('#value').val();
 
-        if($.isNumeric(value) & value > 0) {
+        if ($.isNumeric(value) & value > 0) {
             $('#error').text('');
 
             var valueToSend = {
@@ -37,7 +36,7 @@ $(document).ready(function () {
             };
 
             fetch(API_URL + '/calculate', myInit).then(function (response) {
-                showCountries(response);
+                getEarnings();
             })
 
         } else {
@@ -46,17 +45,27 @@ $(document).ready(function () {
 
     })
 
+    function getEarnings() {
+        $.ajax({
+            url: API_URL + '/send'
+        }).done(function (countries) {
+            showCountries(countries);
+        })
+
+    }
+
     function showCountries(countries) {
         var ul = $('div.countries');
+        ul.text('');
         countries.forEach(function (country) {
             var earning;
-            if(country.earning === undefined) {
+            if (country.monthEarning === undefined) {
                 earning = 'przelicz';
             } else {
-                earning = country.earning;
+                earning = country.monthEarning + ' zł';
             }
             var li = $('<p>Miesięczny zarobek w ' + country.countrySymbol +
-                ' - '+ earning +'</p>');
+                ' : ' + earning + '</p>');
             ul.append(li);
         })
     }

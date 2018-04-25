@@ -14,7 +14,7 @@ public class CalculateEarningServiceTest {
         Earning expectedEarning = new Earning();
 
         expectedEarning.setCountrySymbol("UK");
-        expectedEarning.setMonthEarning(BigDecimal.valueOf(7680.32));
+        expectedEarning.setMonthEarning(BigDecimal.valueOf(5760.24));
 
         Country actualCountry = new Country("UK", 25, 600, "GBP");
         actualCountry.setExchangeRate(BigDecimal.valueOf(4.8002));

@@ -11,9 +11,6 @@ import java.math.BigDecimal;
 
 @Service
 public class CalculateEarningService {
-    @Autowired
-    CountryRepository countryRepository;
-
     private int daysInMonth = 22;
 
 
@@ -21,12 +18,16 @@ public class CalculateEarningService {
         BigDecimal dailyRate = converterFromString(s);
 
         BigDecimal monthEarning = BigDecimal.valueOf(daysInMonth).multiply(dailyRate);
-        CountryRepository cr = new CountryRepository();
-        cr.getCountriesFromFile();
+
+        BigDecimal tax = BigDecimal.valueOf((100 - c.getTaxPercent())).divide(BigDecimal.valueOf(100));
 
         monthEarning = monthEarning.add(BigDecimal.valueOf(-c.getFixedCosts()));
-        monthEarning = monthEarning.multiply(BigDecimal.valueOf(1-c.getTaxPercent()/100));
-        monthEarning = monthEarning.multiply(c.getExchangeRate()).setScale(2);
+
+        if (monthEarning.doubleValue() > 0) {
+            monthEarning = monthEarning.multiply(tax);
+        }
+
+        monthEarning = monthEarning.multiply(c.getExchangeRate());
 
         Earning earning = new Earning();
         earning.setCountrySymbol(c.getCountrySymbol());
@@ -36,9 +37,7 @@ public class CalculateEarningService {
     }
 
 
-
     private BigDecimal converterFromString(String dailyRate) {
-
         JSONObject jsonObject = new JSONObject(dailyRate);
         String value = (String) jsonObject.get("value");
         return new BigDecimal(value);
